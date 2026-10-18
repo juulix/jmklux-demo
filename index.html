@@ -14,7 +14,6 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,300..600;1,6..72,300..500&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="img/hero.webp">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Crect width=%2732%27 height=%2732%27 rx=%276%27 fill=%27%2317271F%27/%3E%3Cpath d=%27M8 21h16M8 16h16M8 11h16%27 stroke=%27%23D8BC91%27 stroke-width=%272.4%27/%3E%3C/svg%3E">
 <script type="application/ld+json">
 {
@@ -92,26 +91,26 @@ h1 em,h2 em{font-style:italic;font-weight:300;color:var(--wood-d)}
 .drawer .btn{margin-top:auto;font:600 15px/1 var(--sans);border:0}
 .drawer .x{position:absolute;top:12px;right:12px;width:44px;height:44px;display:grid;place-items:center}
 
-/* hero */
-.hero{padding:calc(var(--hdr) + 28px) 0 40px}
-.hero-grid{display:grid;gap:28px}
-.hero h1{font-size:clamp(44px,11.5vw,92px);margin:18px 0 20px}
-.hero h1 em{display:block}
-.hero .lead{font-size:17.5px}
-.hero-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}
-.hero-fig{position:relative;border-radius:var(--r);overflow:hidden;aspect-ratio:4/3.2;background:#cfc8b8}
-.hero-fig img{width:100%;height:100%;object-fit:cover}
-.hero-fig figcaption{position:absolute;left:12px;bottom:12px;right:12px;display:flex;flex-wrap:wrap;gap:6px}
-.chip{display:inline-flex;align-items:center;gap:6px;background:rgba(250,249,245,.92);color:var(--ink);font:600 11.5px/1 var(--sans);letter-spacing:.04em;padding:8px 11px;border-radius:999px}
-.chip i{width:6px;height:6px;border-radius:50%;background:var(--pine3)}
-.hero-meta{display:flex;flex-wrap:wrap;gap:8px 22px;margin-top:28px;padding-top:20px;border-top:1px solid var(--line);font-size:13.5px;color:var(--muted)}
-.hero-meta b{color:var(--ink);font-weight:600}
-.scrollhint{display:flex;align-items:center;gap:10px;margin-top:26px;font:600 11.5px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
-.scrollhint span{width:1px;height:34px;background:linear-gradient(var(--muted),transparent);animation:drip 2s ease-in-out infinite}
+/* hero (overlay on the story scene) */
+.hero-ov{position:absolute;inset:0;z-index:3;padding:calc(var(--hdr) + 26px) var(--gut) calc(22px + env(safe-area-inset-bottom));display:flex;flex-direction:column;pointer-events:none;will-change:opacity,transform}
+.hero-ov a{pointer-events:auto}
+.hero-in{max-width:640px}
+.hero-ov .kicker{color:var(--wood-l)}
+.hero-ov h1{font-size:clamp(42px,11.6vw,86px);margin:16px 0 16px;color:var(--paper)}
+.hero-ov h1 em{display:block;color:var(--wood-l)}
+.hero-sub{font-size:15.5px;line-height:1.55;color:rgba(242,240,234,.74);max-width:46ch}
+.hero-ctas{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.btn-ghost{border:1px solid rgba(242,240,234,.45);color:var(--paper)}
+.btn-ghost:hover{background:var(--paper);color:var(--pine)}
+.hero-meta{display:none;flex-wrap:wrap;gap:8px 22px;margin-top:30px;padding-top:18px;border-top:1px solid rgba(255,255,255,.12);font-size:13.5px;color:rgba(242,240,234,.6)}
+.hero-meta b{color:var(--paper);font-weight:600}
+.scrollhint{display:flex;align-items:center;gap:10px;margin-top:auto;font:600 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:rgba(242,240,234,.55)}
+.scrollhint span{width:1px;height:34px;background:linear-gradient(rgba(242,240,234,.7),transparent);animation:drip 2s ease-in-out infinite}
+.scrollhint em{font-style:normal}
 @keyframes drip{0%,100%{transform:scaleY(.4);transform-origin:top}50%{transform:scaleY(1);transform-origin:top}}
 
 /* story */
-.story{position:relative;height:520vh;background:var(--pine);color:var(--paper)}
+.story{position:relative;height:590vh;background:var(--pine);color:var(--paper)}
 .story-pin{position:sticky;top:0;height:100vh;height:100svh;display:grid;grid-template-rows:auto 1fr;padding-top:calc(var(--hdr) + 6px);overflow:hidden}
 .story-cap{padding:0 var(--gut)}
 .story-cap .kicker{color:var(--wood-l)}
@@ -295,9 +294,12 @@ footer.ft{background:var(--pine);color:rgba(242,240,234,.6);padding:34px 0 calc(
   .nav{display:flex}
   .hdr .cta{display:inline-flex}
   .burger{display:none}
-  .hero{padding:calc(var(--hdr) + 56px) 0 70px}
-  .hero-grid{grid-template-columns:1.08fr 1fr;align-items:end;gap:56px}
-  .hero-fig{aspect-ratio:4/4.6}
+  .hero-ov{justify-content:center;padding-left:max(var(--gut),calc((100vw - var(--max))/2 + var(--gut)))}
+  .hero-in{max-width:min(600px,44vw)}
+  .hero-ov h1{font-size:clamp(54px,5.6vw,84px)}
+  .hero-sub{font-size:17px}
+  .hero-meta{display:flex}
+  .scrollhint{position:absolute;left:max(var(--gut),calc((100vw - var(--max))/2 + var(--gut)));bottom:28px}
   .sec{padding:120px 0}
   .sec-head{grid-template-columns:1fr 1fr;align-items:end;gap:40px;margin-bottom:48px}
   .sec-head .lead{justify-self:end}
@@ -333,6 +335,8 @@ footer.ft{background:var(--pine);color:rgba(242,240,234,.6);padding:34px 0 calc(
   *,*::before,*::after{animation:none!important;transition-duration:.01ms!important;scroll-behavior:auto!important}
   .rv{opacity:1;transform:none}
   .story{height:auto}
+  .hero-ov{position:relative;padding-bottom:8px}
+  .scrollhint{display:none}
   .story-pin{position:relative;height:auto;min-height:0;grid-template-rows:auto auto}
   .stage{height:min(70vh,560px)}
   .caps{display:none}
@@ -373,33 +377,27 @@ footer.ft{background:var(--pine);color:rgba(242,240,234,.6);padding:34px 0 calc(
 </div>
 
 <main id="top">
-<section class="hero">
-  <div class="wrap hero-grid">
-    <div>
-      <span class="kicker rv" data-i18n="hero.k"></span>
-      <h1 class="rv d1" data-i18n-html="hero.t"></h1>
-      <p class="lead rv d2" data-i18n="hero.sub"></p>
-      <div class="hero-ctas rv d3">
-        <a href="#inquiry" class="btn btn-dark"><span data-i18n="cta.wholesale"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
-        <a href="#products" class="btn btn-line" data-i18n="cta.products"></a>
-      </div>
-      <div class="hero-meta rv d3">
-        <span><b>2006</b> · <span data-i18n="hero.m1"></span></span>
-        <span><b>95%</b> · <span data-i18n="hero.m2"></span></span>
-        <span><b>FSC®</b> · FSC-C107709</span>
-      </div>
-      <div class="scrollhint rv d3"><span></span><em data-i18n="hero.scroll" style="font-style:normal"></em></div>
-    </div>
-    <figure class="hero-fig rv d2">
-      <img src="img/hero.webp" width="1200" height="900" alt="" data-i18n-alt="hero.alt" fetchpriority="high">
-      <figcaption><span class="chip"><i></i><span data-i18n="hero.chip1"></span></span><span class="chip"><i></i><span data-i18n="hero.chip2"></span></span></figcaption>
-    </figure>
-  </div>
-</section>
-
-<section class="story" id="story" aria-label="How it is made">
+<section class="story" id="story" aria-label="JMK LUX">
   <div class="story-pin">
-    <div class="story-cap">
+    <div class="hero-ov" id="heroOv">
+      <div class="hero-in">
+        <span class="kicker" data-i18n="hero.k"></span>
+        <h1 data-i18n-html="hero.t"></h1>
+        <p class="hero-sub" data-i18n="hero.sub"></p>
+        <div class="hero-ctas">
+          <a href="#inquiry" class="btn btn-wood"><span data-i18n="cta.wholesale"></span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+          <a href="#products" class="btn btn-ghost" data-i18n="cta.products"></a>
+        </div>
+        <div class="hero-meta">
+          <span><b>2006</b> · <span data-i18n="hero.m1"></span></span>
+          <span><b>95%</b> · <span data-i18n="hero.m2"></span></span>
+          <span><b>FSC®</b> · FSC-C107709</span>
+          <span><b>5</b> · <span data-i18n="hero.chip2"></span></span>
+        </div>
+      </div>
+      <div class="scrollhint"><span></span><em data-i18n="hero.scroll"></em></div>
+    </div>
+    <div class="story-cap" id="storyCap">
       <span class="kicker" data-i18n="story.k"></span>
       <div class="caps" id="caps">
         <div class="cap on"><small data-i18n="s1.k"></small><h3 data-i18n="s1.t"></h3><p data-i18n="s1.d"></p></div>
@@ -685,7 +683,7 @@ footer.ft{background:var(--pine);color:rgba(242,240,234,.6);padding:34px 0 calc(
 const LANGS=[{c:'en',l:'EN'},{c:'de',l:'DE'},{c:'lv',l:'LV'}]; // later: {c:'sv',l:'SV'},{c:'da',l:'DA'},{c:'fi',l:'FI'}
 
 const PRODUCTS=[
- ['playgrounds',3,'wide'],['swings',3],['sandboxes',3],['playhouses',3],['gazebos',3],['pavilions',3],
+ ['pavilions',3,'hero-wide'],['playgrounds',3],['swings',3],['sandboxes',3],['playhouses',3],['gazebos',3],
  ['gardenhouses',3],['sheds',3],['tables',3],['planters',3],['landscape',3],['kennels',3],
  ['greenhouses',1],['verandas',2],['binstores',2],['toilets',1],['custom',3]
 ];
@@ -925,7 +923,7 @@ $('#langs').addEventListener('click',e=>{const b=e.target.closest('button');if(b
 
 /* ---------- products ---------- */
 function renderProducts(){
-  $('#prodGrid').innerHTML=PRODUCTS.map(([k,n,w],i)=>`<button class="card rv in${w?' wide':''}" data-k="${k}"><div class="im"><img src="img/${k}-${w?1:'t'}.webp" loading="lazy" alt="${t('p.'+k)}"></div><div class="tx"><span class="n">${String(i+1).padStart(2,'0')}</span><h3>${t('p.'+k)}</h3></div></button>`).join('');
+  $('#prodGrid').innerHTML=PRODUCTS.map(([k,n,w],i)=>`<button class="card rv in${w?' wide':''}" data-k="${k}"><div class="im"><img src="img/${w||k+'-t'}.webp" loading="lazy" alt="${t('p.'+k)}"></div><div class="tx"><span class="n">${String(i+1).padStart(2,'0')}</span><h3>${t('p.'+k)}</h3></div></button>`).join('');
 }
 let sheetKey=null,lastFocus=null;
 function openSheet(k){
@@ -1050,19 +1048,20 @@ const CAM=[[0,420,420,640,300],[.15,430,410,640,300],[.21,470,365,500,330],[.43,
 // portrait stage (phones): follow the action closer
 const CAM_M=[[0,290,420,450,200],[.13,520,420,440,200],[.2,480,370,420,200],[.43,480,370,420,200],[.49,300,390,520,200],[.6,420,385,560,200],[.7,520,385,560,200],[.765,600,350,560,200],[.83,500,228,180,180],[.9,455,250,270,270],[.985,410,300,410,420],[1,410,300,410,420]];
 let portrait=false;const stageEl=$('#stage');
-function measure(){portrait=stageEl.clientWidth/Math.max(1,stageEl.clientHeight)<1.15}
+function measure(){portrait=innerWidth<900}
 function cam(p){const C=portrait?CAM_M:CAM;let i=0;while(i<C.length-2&&p>C[i+1][0])i++;const a=C[i],b=C[i+1],k=ease(seg(p,a[0],b[0]));return [lerp(a[1],b[1],k),lerp(a[2],b[2],k),lerp(a[3],b[3],k),lerp(a[4],b[4],k)]}
 
 const svg=$('#scene'),E={log:$('#log'),planksG:$('#planks'),plWrap:$('#plWrap'),logWrap:$('#logWrap'),blade:$('#blade'),saw:$('#saw'),dust:[...$('#dust').children],pallet:$('#pallet'),cargo:$('#cargo'),tb:$('#truckBack'),tf:$('#truckFront'),curtain:$('#curtain'),ctxt:$('#curtainTxt'),sceneA:$('#sceneA'),map:$('#map'),mtruck:$('#mtruck'),pieces:$('#pieces')};
 const caps=$$('#caps .cap'),stepBars=$$('#steps b');
 let lastStep=-1;
 
+let introK=RM?1:0,now=0,HV=1;
 function render(p){
-  // camera
-  const [cx,cy,w,h]=cam(p);svg.setAttribute('viewBox',`${(cx-w/2).toFixed(1)} ${(cy-h/2).toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`);
+  // camera (shifted while the hero headline is visible)
+  let [cx,cy,w,h]=cam(p);if(portrait)cy-=80*HV;else{cx-=230*HV;w*=1+.35*HV;h*=1+.35*HV}svg.setAttribute('viewBox',`${(cx-w/2).toFixed(1)} ${(cy-h/2).toFixed(1)} ${w.toFixed(1)} ${h.toFixed(1)}`);
 
   // 1. sawing 0 → .14
-  const s1=ease(seg(p,0,.14)),L=60+340*s1;
+  const s1=ease(seg(p,0,.14)),L=60+340*s1-(1-introK)*440;
   E.log.setAttribute('transform',`translate(${L.toFixed(1)} 0)`);
   const spread=6*eOut(seg(p,.02,.14));
   E.planksG.setAttribute('transform',`translate(${L.toFixed(1)} 0)`);
@@ -1070,9 +1069,9 @@ function render(p){
   const plO=1-seg(p,.15,.18);E.plWrap.setAttribute('opacity',plO.toFixed(3));
   E.logWrap.setAttribute('visibility',s1>=1?'hidden':'visible');
   const sawO=1-seg(p,.16,.2);E.saw.setAttribute('opacity',sawO.toFixed(3));
-  E.blade.setAttribute('transform',`translate(400 432) rotate(${(p*5400%360).toFixed(1)})`);
-  const cutting=p>0.005&&p<.14;
-  E.dust.forEach((d,i)=>{const ph=(p*90+i*.37)%1;d.setAttribute('cx',(392-ph*40-(i%4)*6).toFixed(1));d.setAttribute('cy',(420-ph*34+(i%3)*8).toFixed(1));d.setAttribute('opacity',cutting?(1-ph)*.8:0)});
+  spinBlade(p);
+  const cutting=p<.14&&introK>.85;
+  E.dust.forEach((d,i)=>{const ph=(p*90+now*.0012+i*.37)%1;d.setAttribute('cx',(392-ph*40-(i%4)*6).toFixed(1));d.setAttribute('cy',(420-ph*34+(i%3)*8).toFixed(1));d.setAttribute('opacity',cutting?(1-ph)*.8:0)});
 
   // pieces: pile → built (.19–.38) → packed (.46–.54)
   const pileO=seg(p,.14,.18);E.pieces.setAttribute('opacity',pileO.toFixed(3));
@@ -1117,8 +1116,24 @@ function render(p){
   const bounds=[0,.17,.44,.765,1];stepBars.forEach((b,i)=>b.style.transform=`scaleX(${seg(p,bounds[i],bounds[i+1]).toFixed(3)})`);
 }
 
-let ticking=false;
+function spinBlade(p){E.blade.setAttribute('transform',`translate(400 432) rotate(${((p*5400+now*.3)%360).toFixed(1)})`)}
+const heroOv=$('#heroOv'),storyCap=$('#storyCap');
+let ticking=false,P=0,inView=true;
 function storyP(){const r=story.getBoundingClientRect(),H=story.offsetHeight-innerHeight;return H>0?clamp(-r.top/H):0}
+const HERO_END=.07;
+function frame(){
+  HV=1-ease(seg(P,0,HERO_END));const p=seg(P,HERO_END,1);
+  heroOv.style.opacity=HV.toFixed(3);heroOv.style.transform=`translateY(${(-(1-HV)*40).toFixed(1)}px)`;heroOv.style.visibility=HV>0?'visible':'hidden';
+  storyCap.style.opacity=seg(P,HERO_END*.7,HERO_END*1.3).toFixed(3);
+  render(p);
+}
+// idle: saw keeps spinning, log rolls in on load
+const T0=performance.now();
+function loop(ts){
+  now=ts;
+  if(inView){if(introK<1){introK=eOut(Math.min(1,(ts-T0-300)/1500>0?(ts-T0-300)/1500:0));frame()}else{const p=seg(P,HERO_END,1);if(p<.2){spinBlade(p);E.dust.forEach((d,i)=>{const ph=(p*90+now*.0012+i*.37)%1;d.setAttribute('cx',(392-ph*40-(i%4)*6).toFixed(1));d.setAttribute('cy',(420-ph*34+(i%3)*8).toFixed(1));d.setAttribute('opacity',p<.14?((1-ph)*.8).toFixed(2):0)})}}}
+  requestAnimationFrame(loop);
+}
 function onScroll(){
   if(ticking)return;ticking=true;
   requestAnimationFrame(()=>{ticking=false;
@@ -1127,7 +1142,8 @@ function onScroll(){
     hdr.classList.toggle('dark',sr.top<=0&&sr.bottom>64);
     if(hdr.classList.contains('dark'))hdr.classList.remove('solid');
     mbar.classList.toggle('show',y>innerHeight*.7&&!(sr.top<=0&&sr.bottom>innerHeight));
-    if(!RM&&sr.bottom>0&&sr.top<innerHeight)render(storyP());
+    inView=sr.bottom>0&&sr.top<innerHeight;
+    if(!RM&&inView){P=storyP();frame()}
   });
 }
 addEventListener('scroll',onScroll,{passive:true});
@@ -1136,7 +1152,7 @@ measure();
 window.__render=render; // for testing
 
 applyLang(pickLang());
-render(RM?1:storyP());
+if(RM){HV=0;render(1)}else{P=storyP();frame();requestAnimationFrame(loop)}
 onScroll();
 </script>
 </body>
